@@ -1,0 +1,56 @@
+<section id="blog-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="input-group col-md-12">
+            <input type="search" class="form-control" placeholder="Search Text" [(ngModel)]="filter">
+          <span class="input-group-btn">
+            <button class="btn btn-danger" type="button">
+              <span class=" glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
+        <div class="row" *ngIf="posts">
+          <div class="col-lg-6 col-md-6" *ngFor="let post of posts | orderBy: 'title' : reverse | filter:filter | paginate: { itemsPerPage: recordPerPage, currentPage: currentPageNumber }; let i = index">
+            <aside>
+              <img src="http://lorempixel.com/640/480/nature" class="img-responsive">
+              <div class="content-title">
+                <div class="text-center">
+                  <h3>
+                    <a routerLink="/post/{{post.id}}">{{post.title}}</a>
+                  </h3>
+                </div>
+                <p>
+                  <small>{{post.body}}</small>
+                </p>
+              </div>
+              <div class="content-footer" routerLink="/user/{{post.userId}}">
+                <img class="user-small-img" src="http://www.clearcredentials.com/static/images/userlogin.png">
+                <span style="font-size: 16px;color: #fff;">User Name</span>
+                <span class="pull-right">
+                  <a data-toggle="tooltip" data-placement="left" title="Comments">
+                    <i class="fa fa-comments"></i> 30</a>
+                  <a data-toggle="tooltip" data-placement="right" title="Loved">
+                    <i class="fa fa-heart"></i> 20</a>
+                </span>
+              </div>
+            </aside>
+          </div>
+          <div class="col-sm-12 text-center">
+            <div class="pagination">
+              <pagination-controls (pageChange)="currentPageNumber = $event"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <app-recent-post></app-recent-post>
+        <app-archives></app-archives>
+        <app-categories></app-categories>
+        <app-newsletter></app-newsletter>
+      </div>
+    </div>
+  </div>
+
+</section>

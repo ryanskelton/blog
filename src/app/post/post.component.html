@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12" *ngIf="postData">
+      <img class="img-responsive" src="http://lorempixel.com/640/480/nature" />
+      <h3>{{postData.title}}</h3>
+      <p>
+        <small>14 Nov, 2018</small> <b>User <a routerLink="/user/{{postData.userId}}">{{postData.userId}}</a></b>
+      </p>
+      <p>{{postData.body}}</p>
+    </div>
+  </div>
+</div>
